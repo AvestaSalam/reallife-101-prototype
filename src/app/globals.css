@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #121212;
+  --foreground: #ffffff;
+  --scrollbar-thumb: #2E2E2E;
+  --scrollbar-track: #1E1E1E;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* NOTE: no CSS `scroll-behavior: smooth` on html or scroll containers — it
+   fights Lenis and Next.js programmatic scrolling (both must control scroll
+   position per-frame) and causes visible glide/jank during navigation.
+   Smoothness is handled by Lenis on desktop-style scrolling. */
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll containers (native scrolling; Lenis only augments wheel input) */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Lenis (official helper CSS) — applied to the element Lenis controls.
+   `scroll-behavior: auto !important` is REQUIRED: CSS smooth scrolling would
+   re-animate every per-frame scrollTop Lenis sets, causing stutter/jank. */
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3E3E3E;
+}
+
+/* Hex badge clip path */
+.hex-clip {
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+}
+
+/* Hide horizontal scrollbar on filter rows */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Toast entrance animation */
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
