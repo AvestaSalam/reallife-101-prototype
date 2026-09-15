@@ -50,3 +50,9 @@ next-env.d.ts
 /server-log.txt
 *.tsbuildinfo
 next-env.d.ts
+
+# local node setup artifacts (not part of the app)
+/install*.log
+/pack-log.txt
+/node20-portable/
+/node20.zip
