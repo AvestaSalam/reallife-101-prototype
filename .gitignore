@@ -34,6 +34,14 @@ yarn-error.log*
 # typescript
 # typescript
 *.tsbuildinfo
+# local dev artifacts
+/dev-log.txt
+/dev-verify.log
+/server-log.txt
+
+# cloudflare workers / opennext
+/.wrangler/
+/.open-next/
 next-env.d.ts
 
 # local dev artifacts
